@@ -494,14 +494,14 @@ export default function App() {
               <div>
                 <div className="flex items-center gap-2">
                   <h1 className="text-xl sm:text-2xl font-black font-serif text-[#FBF8F3] tracking-tight">
-                    L'Angolo dei Volumi PDF
+                   PDF 书籍之角
                   </h1>
                   <span className="text-[9px] font-mono font-black uppercase tracking-widest px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">
-                    EDIZIONE PREGIATA
+                    L'Angolo dei Volumi PDF
                   </span>
                 </div>
                 <p className="text-xs text-stone-400 mt-0.5 font-serif italic">
-                  Volumi rilegati con copertina, citazione guida e indice capitoli
+                Lezioni-Racconti-Scrittura-Esercizi
                 </p>
               </div>
             </div>
@@ -703,7 +703,7 @@ export default function App() {
       <footer className="border-t border-[#2C241E] bg-[#14100D] py-6 text-center text-xs text-stone-500 mt-auto">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="font-serif italic text-stone-400">
-            L'Angolo dei Volumi PDF • Edizione Pregiata & Consultazione Aperta
+            L'Angolo dei Volumi PDF • Materiale vario per la lingua Cinese
           </span>
           <span className="font-mono text-[11px] text-stone-500">
             Supporto Offline • Download Nativo Chromium
