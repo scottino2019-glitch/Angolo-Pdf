@@ -1,52 +1,71 @@
 @import "tailwindcss";
 
-@layer base {
-  html {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    scroll-behavior: smooth;
-    background-color: #181411;
-    color: #FBF8F3;
-  }
-
-  .font-editorial {
-    font-family: 'Newsreader', 'Lora', Georgia, serif;
-  }
-
-  body.font-dyslexic {
-    font-family: 'Atkinson Hyperlegible', sans-serif !important;
-  }
-
-  body.text-size-lg {
-    font-size: 110%;
-  }
-
-  body.text-size-xl {
-    font-size: 125%;
-  }
-
-  /* High contrast mode for accessibility */
-  body.high-contrast {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-  }
-
-  body.high-contrast * {
-    border-color: #ffffff !important;
-  }
-
-  body.high-contrast a,
-  body.high-contrast button {
-    text-decoration: underline;
-  }
-
-  /* Custom visible focus rings for keyboard accessibility */
-  :focus-visible {
-    outline: 2px solid #D97706 !important;
-    outline-offset: 3px !important;
-  }
+html {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  scroll-behavior: smooth;
+  background-color: #181411;
+  color: #FBF8F3;
+  transition: font-size 0.15s ease-out;
 }
 
-/* Custom scrollbars for rich contrasting library theme */
+/* 1. Scalatura Dimensione Testo Globale (influenza tutte le classi rem di Tailwind) */
+html.text-size-lg {
+  font-size: 118% !important;
+}
+
+html.text-size-xl {
+  font-size: 136% !important;
+}
+
+/* 2. Carattere ad Alta Leggibilità (Atkinson Hyperlegible su tutti gli elementi) */
+html.font-dyslexic,
+html.font-dyslexic * {
+  font-family: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* 3. Modalità Alto Contrasto */
+html.high-contrast,
+html.high-contrast body,
+html.high-contrast #root,
+html.high-contrast #root > div {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+html.high-contrast header,
+html.high-contrast footer {
+  background-color: #0a0a0a !important;
+  border-color: #FFFFFF !important;
+}
+
+html.high-contrast [id^="libro-card-"] {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25) !important;
+}
+
+html.high-contrast [id^="libro-card-"] h3,
+html.high-contrast [id^="libro-card-"] p,
+html.high-contrast [id^="libro-card-"] span,
+html.high-contrast [id^="libro-card-"] strong {
+  color: #111111 !important;
+}
+
+html.high-contrast input[type="search"] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+/* Focus visibile per accessibilità da tastiera */
+:focus-visible {
+  outline: 2px solid #D97706 !important;
+  outline-offset: 3px !important;
+}
+
+/* Scrollbar personalizzata a tema biblioteca */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -68,3 +87,5 @@
 .perspective-1000 {
   perspective: 1000px;
 }
+
+
