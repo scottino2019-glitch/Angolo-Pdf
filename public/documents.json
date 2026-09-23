@@ -1,134 +1,20 @@
 [
   {
     "id": "doc-01",
-    "title": "Linee Guida Accessibilità Digitale 2026",
-    "category": "Guide & Standard",
-    "author": "Comitato Tecnico per l'Accessibilità",
-    "description": "Standard WCAG 2.2, requisiti per contrasto cromatico elevato, navigazione da tastiera e compatibilità universale.",
-    "quote": "L'accessibilità digitale non è un vincolo accessorio, ma il fondamento stesso dell'uguaglianza dei cittadini nel web moderno.",
-    "chapters": [
-      { "title": "1. Principi WCAG 2.2 e Contrasto", "pages": "pp. 1-4" },
-      { "title": "2. Navigazione da Tastiera e Screen Reader", "pages": "pp. 5-9" },
-      { "title": "3. Metodologie di Verifica e Validazione", "pages": "pp. 10-14" }
+    "title": "La mia cuginetta",
+    "category": "Lezioni",
+    "author": "",
+    "description": "Racconto con grammatica e vocaboli",
+    "quote": 今天.妈妈带我到医院看望刚出生的表妹
     ],
-    "filename": "linee-guida-accessibilita-2026.pdf",
-    "fileUrl": "/documents/linee-guida-accessibilita-2026.pdf",
-    "coverImage": "/covers/cover_accessibilita_1790181122604.jpg",
+    "filename": "la-mia-cuginetta.pdf",
+    "fileUrl": "/documents/la-mia-cuginetta.pdf",
+    "coverImage": "/covers/cuginetta.jpg",
     "fileSize": "1.2 MB",
-    "pages": 14,
+    "pages": 5,
     "date": "2026-03-15",
-    "tags": ["Accessibilità", "WCAG", "Design", "Inclusione"],
+    "tags": ["Lezioni", "Grammatica", "Vocaboli", "Lettura"],
     "badge": "In Evidenza",
     "accent": "emerald"
-  },
-  {
-    "id": "doc-02",
-    "title": "Statuto dei Diritti Digitali del Cittadino",
-    "category": "Normative & Diritti",
-    "author": "Assemblea per la Cittadinanza Digitale",
-    "description": "Trasparenza amministrativa, libertà di consultazione pubblica, accesso universale ai formati aperti.",
-    "quote": "Ogni cittadino ha diritto alla piena conoscibilità degli atti pubblici mediante formati aperti, liberi e leggibili da chiunque.",
-    "chapters": [
-      { "title": "1. Diritto all'Informazione Aperta", "pages": "pp. 1-2" },
-      { "title": "2. Trasparenza Amministrativa e Open Data", "pages": "pp. 3-5" },
-      { "title": "3. Garanzie di Conservazione e Tutela", "pages": "pp. 6-8" }
-    ],
-    "filename": "statuto-diritti-del-cittadino.pdf",
-    "fileUrl": "/documents/statuto-diritti-del-cittadino.pdf",
-    "coverImage": "/covers/cover_diritti_digitali_1790181136425.jpg",
-    "fileSize": "920 KB",
-    "pages": 8,
-    "date": "2026-02-10",
-    "tags": ["Diritti", "Trasparenza", "Normativa"],
-    "badge": "Istituzionale",
-    "accent": "blue"
-  },
-  {
-    "id": "doc-03",
-    "title": "Manuale di Buone Pratiche di Sicurezza",
-    "category": "Sicurezza & Privacy",
-    "author": "Nucleo Sicurezza Informatica & Privacy",
-    "description": "Protezione dei dati personali, crittografia locale, prevenzione del phishing e gestione sicura dei backup.",
-    "quote": "La sicurezza informatica più efficace non risiede negli algoritmi complessi, ma nelle abitudini quotidiane e nella consapevolezza del dato.",
-    "chapters": [
-      { "title": "1. Gestione Credenziali e Crittografia", "pages": "pp. 1-7" },
-      { "title": "2. Prevenzione Phishing e Ingegneria Sociale", "pages": "pp. 8-15" },
-      { "title": "3. Strategie di Backup 3-2-1 e Ripristino", "pages": "pp. 16-22" }
-    ],
-    "filename": "manuale-sicurezza-dati.pdf",
-    "fileUrl": "/documents/manuale-sicurezza-dati.pdf",
-    "coverImage": "/covers/cover_sicurezza_dati_1790181148439.jpg",
-    "fileSize": "2.4 MB",
-    "pages": 22,
-    "date": "2026-01-20",
-    "tags": ["Privacy", "Sicurezza", "Crittografia", "Backup"],
-    "badge": "Consigliato",
-    "accent": "amber"
-  },
-  {
-    "id": "doc-04",
-    "title": "Modulo Unificato di Richiesta Documentale",
-    "category": "Modulistica",
-    "author": "Ufficio Relazioni con il Pubblico",
-    "description": "Modello ufficiale per la richiesta di accesso agli archivi, consultabile e compilabile anche offline.",
-    "quote": "L'accesso documentale costituisce il tramite essenziale per la partecipazione consapevole del cittadino alla vita pubblica.",
-    "chapters": [
-      { "title": "1. Istruzioni Generali di Compilazione", "pages": "pp. 1" },
-      { "title": "2. Dati Anagrafici e Oggetto dell'Istanza", "pages": "pp. 2" },
-      { "title": "3. Informativa sul Trattamento e Sottoscrizione", "pages": "pp. 3-4" }
-    ],
-    "filename": "modulo-richiesta-accesso.pdf",
-    "fileUrl": "/documents/modulo-richiesta-accesso.pdf",
-    "coverImage": "/covers/cover_modulo_richiesta_1790181160269.jpg",
-    "fileSize": "480 KB",
-    "pages": 4,
-    "date": "2026-01-18",
-    "tags": ["Moduli", "Istanza", "Ufficiale"],
-    "badge": "Compilabile",
-    "accent": "violet"
-  },
-  {
-    "id": "doc-05",
-    "title": "Report Annuale sulla Transizione Ecologica",
-    "category": "Report & Ricerche",
-    "author": "Osservatorio per lo Sviluppo Sostenibile",
-    "description": "Indicatori analitici, bilancio dei consumi e riduzione dell'impronta carbonica con protocolli sostenibili.",
-    "quote": "Misurare con rigore l'impronta ecologica è il primo passo inderogabile per trasformare gli obiettivi climatici in azioni misurabili.",
-    "chapters": [
-      { "title": "1. Quadro Generale e Indicatori di Sostenibilità", "pages": "pp. 1-12" },
-      { "title": "2. Bilancio Energetico e Decarbonizzazione", "pages": "pp. 13-25" },
-      { "title": "3. Proiezioni 2026-2030 e Raccomandazioni", "pages": "pp. 26-36" }
-    ],
-    "filename": "report-transizione-ecologica.pdf",
-    "fileUrl": "/documents/report-transizione-ecologica.pdf",
-    "coverImage": "/covers/cover_transizione_eco_1790181169877.jpg",
-    "fileSize": "3.1 MB",
-    "pages": 36,
-    "date": "2026-02-20",
-    "tags": ["Ambiente", "Report", "Sostenibilità", "Dati"],
-    "badge": "Report 2026",
-    "accent": "teal"
-  },
-  {
-    "id": "doc-06",
-    "title": "Guida Tecnica ai Formati Documentali Aperti",
-    "category": "Guide & Standard",
-    "author": "Gruppo di Studio Formati e Preservazione",
-    "description": "Standard PDF/A per la conservazione legale nel tempo, linearizzazione web e compatibilità col motore Chromium.",
-    "quote": "La conservazione a lungo termine della memoria digitale dipende dall'adozione senza compromessi di formati aperti e indipendenti dal fornitore.",
-    "chapters": [
-      { "title": "1. La Famiglia PDF/A e i Profili di Conformità", "pages": "pp. 1-5" },
-      { "title": "2. Linearizzazione Fast Web View e Font Embedding", "pages": "pp. 6-11" },
-      { "title": "3. Validazione e Firme Elettroniche Qualificate", "pages": "pp. 12-16" }
-    ],
-    "filename": "guida-formati-aperti.pdf",
-    "fileUrl": "/documents/guida-formati-aperti.pdf",
-    "coverImage": "/covers/cover_formati_aperti_1790181181163.jpg",
-    "fileSize": "1.8 MB",
-    "pages": 16,
-    "date": "2026-03-05",
-    "tags": ["PDF/A", "Archiviazione", "Standard"],
-    "badge": "Nuovo",
-    "accent": "rose"
   }
 ]
