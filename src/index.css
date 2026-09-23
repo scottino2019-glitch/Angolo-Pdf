@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+    background-color: #181411;
+    color: #FBF8F3;
+  }
+
+  .font-editorial {
+    font-family: 'Newsreader', 'Lora', Georgia, serif;
+  }
+
+  body.font-dyslexic {
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+  }
+
+  body.text-size-lg {
+    font-size: 110%;
+  }
+
+  body.text-size-xl {
+    font-size: 125%;
+  }
+
+  /* High contrast mode for accessibility */
+  body.high-contrast {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  body.high-contrast * {
+    border-color: #ffffff !important;
+  }
+
+  body.high-contrast a,
+  body.high-contrast button {
+    text-decoration: underline;
+  }
+
+  /* Custom visible focus rings for keyboard accessibility */
+  :focus-visible {
+    outline: 2px solid #D97706 !important;
+    outline-offset: 3px !important;
+  }
+}
+
+/* Custom scrollbars for rich contrasting library theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #201B17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4A3C32;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6E5A4B;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
