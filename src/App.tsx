@@ -47,7 +47,7 @@ export interface DocumentItem {
   accent?: string;
 }
 
-// Editorial Book Card Component preserving the prominent image, quote, silk ribbon, and reading progress
+// Editorial Book Card Component strictly adhering to the user's HTML template
 function EditorialBookCard({
   doc,
   onOpenPreview
@@ -73,23 +73,23 @@ function EditorialBookCard({
     setCurrentPage((p) => Math.min(totalPages, p + 1));
   };
 
-  // Dedicated quote from document or fallback to quote/description
-  const displayQuote = doc.quote || doc.description;
+  // Dedicated quote from document or fallback to description
+  const displayQuote = doc.quote || doc.description || "Nessuna citazione disponibile.";
 
   // Resolve cover image from any common key name
   const coverSource = doc.coverImage || doc.image || doc.cover || doc.copertina;
 
   return (
-    <article
+    <div
       id={`libro-card-${doc.id}`}
-      className="w-full transition-all duration-300 rounded-2xl p-5 sm:p-6 relative shadow-2xl border-2 bg-gradient-to-br from-[#FCF9F2] via-[#F7F2E7] to-[#EDE3D1] border-[#D3C2A6] text-stone-900 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_22px_45px_rgba(0,0,0,0.6)] group"
+      className="w-full transition-all duration-300 rounded-2xl p-6 relative shadow-xl border-2 bg-gradient-to-br from-[#fcf9f2] via-[#f7f2e7] to-[#ede3d1] border-[#d3c2a6] text-stone-900 flex flex-col justify-between hover:-translate-y-1 hover:shadow-2xl"
     >
       {/* Segnalibro a Nastro in Seta Cliccabile */}
       <div
         id={`book-ribbon-${doc.id}`}
+        title="Clicca per spostare il segnalibro"
         role="button"
         tabIndex={0}
-        aria-label={isBookmarked ? 'Segnalibro inserito' : 'Inserisci segnalibro'}
         onClick={() => setIsBookmarked(!isBookmarked)}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -97,244 +97,178 @@ function EditorialBookCard({
             setIsBookmarked(!isBookmarked);
           }
         }}
-        title="Clicca per spostare il segnalibro"
-        className={`absolute -top-1.5 right-7 w-6 h-12 rounded-b shadow-lg flex items-end justify-center pb-1.5 z-20 cursor-pointer transition-all duration-200 ${
-          isBookmarked
-            ? 'bg-gradient-to-b from-amber-600 to-amber-700 border-x border-amber-800 h-14 shadow-amber-950/50'
-            : 'bg-gradient-to-b from-red-600 to-rose-700 border-x border-red-800 hover:h-14 shadow-red-950/40'
+        className={`absolute -top-1 right-8 w-5 h-10 rounded-b shadow-md flex items-end justify-center pb-1 z-10 cursor-pointer bg-gradient-to-b from-red-600 to-rose-700 border-x border-red-800 transition-all ${
+          isBookmarked ? 'h-13 opacity-100 shadow-amber-950/60' : 'hover:h-12 opacity-90'
         }`}
       >
-        <div className="w-0 h-0 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#FCF9F2] mb-[-2px]" />
+        <div className="w-0 h-0 border-x-[5px] border-x-transparent border-b-[5px] border-b-[#fcf9f2] mb-[-1px]" />
       </div>
 
       <div>
-        {/* Immagine di Copertina Pregiata Visibile & In Primo Piano */}
-        {coverSource && !imgError ? (
-          <div
-            onClick={() => onOpenPreview(doc)}
-            className="relative w-full h-48 rounded-xl overflow-hidden mb-4 border border-[#D3C2A6] shadow-md bg-stone-950 cursor-pointer group/img"
-            title="Clicca per consultare a schermo intero"
-          >
-            <img
-              src={coverSource}
-              alt={`Copertina del volume: ${doc.title}`}
-              onError={() => setImgError(true)}
-              className="w-full h-full object-cover group-hover/img:scale-104 transition-transform duration-300"
-            />
-            {/* Overlay graduato di pregio */}
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-black/20" />
-
-            {/* Badge formato e pagine sulla copertina */}
-            <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-black/60 text-amber-300 border border-white/10 backdrop-blur-xs">
-                PDF / A • {doc.fileSize}
-              </span>
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-black/60 text-stone-200 border border-white/10 backdrop-blur-xs">
-                {doc.pages} pag.
+        {/* Intestazione Libro & Copertina 3D (Layout orizzontale originale dell'utente) */}
+        <div className="flex items-start gap-4 mb-4">
+          {/* Volume 3D Copertina / Immagine */}
+          {coverSource && !imgError ? (
+            <div
+              onClick={() => onOpenPreview(doc)}
+              className="relative w-20 h-28 rounded-lg overflow-hidden border-l-4 border-amber-400 shadow-xl shrink-0 cursor-pointer group/cover bg-stone-950"
+              title="Clicca per consultare"
+            >
+              <img
+                src={coverSource}
+                alt={doc.title}
+                onError={() => setImgError(true)}
+                className="w-full h-full object-cover group-hover/cover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-black/20 pointer-events-none" />
+              <span className="absolute bottom-1 left-1 text-[7px] font-mono font-bold uppercase tracking-wider text-amber-300 bg-black/70 px-1 py-0.2 rounded pointer-events-none">
+                PDF
               </span>
             </div>
-
-            {/* Bottone rapido di anteprima visibile su hover */}
-            <div className="absolute top-2.5 left-3 opacity-0 group-hover/img:opacity-100 transition-opacity">
-              <span className="text-[10px] font-serif font-bold px-2 py-1 rounded-md bg-amber-600 text-stone-950 shadow">
-                Clicca per aprire
+          ) : (
+            <div
+              onClick={() => onOpenPreview(doc)}
+              className="relative w-20 h-28 rounded-lg bg-gradient-to-tr from-stone-950 via-rose-950 to-red-900 border-l-4 border-amber-400 p-2 shadow-xl flex flex-col justify-between shrink-0 cursor-pointer"
+              title="Clicca per consultare"
+            >
+              <span className="text-[7px] font-black uppercase tracking-wider text-amber-300">
+                EDITORIAL
               </span>
+              <div>
+                <h5 className="text-[9px] font-serif font-black text-amber-100 leading-tight line-clamp-3">
+                  {doc.title}
+                </h5>
+                <span className="text-[7px] text-stone-400 font-mono">EDIZIONE CRITICA</span>
+              </div>
             </div>
-          </div>
-        ) : (
-          /* Volume 3D se manca l'immagine o se il file non è trovato */
-          <div
-            onClick={() => onOpenPreview(doc)}
-            className="relative w-full h-36 rounded-xl bg-gradient-to-tr from-stone-950 via-rose-950 to-red-900 border-l-4 border-amber-400 p-4 shadow-xl flex flex-col justify-between mb-4 cursor-pointer"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[9px] font-mono font-black uppercase tracking-wider text-amber-300">
-                VOLUME PDF / A
-              </span>
-              <span className="text-[10px] font-mono font-bold text-amber-200">
-                {doc.fileSize}
-              </span>
-            </div>
-            <div>
-              <h5 className="text-base font-serif font-black text-amber-100 leading-snug line-clamp-2">
-                {doc.title}
-              </h5>
-              <span className="text-[10px] text-stone-300 font-mono mt-1 block">
-                {doc.author || 'EDIZIONE UFFICIALE'}
-              </span>
-            </div>
-          </div>
-        )}
-
-        {/* Metadati Libro & Titolo (mostra SOLO dati reali) */}
-        <div className="mb-3.5 pr-6">
-          <div className="flex items-center gap-2 flex-wrap mb-1">
-            {doc.category && (
-              <span className="text-[9px] font-mono font-black uppercase tracking-widest text-amber-900 block">
-                {doc.category}
-              </span>
-            )}
-            {doc.badge && (
-              <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-amber-900/10 text-amber-950 border border-amber-900/20">
-                {doc.badge}
-              </span>
-            )}
-          </div>
-
-          <h3
-            onClick={() => onOpenPreview(doc)}
-            className="font-serif font-black text-lg leading-tight text-[#2B1B16] mt-0.5 hover:text-amber-900 transition-colors cursor-pointer line-clamp-2"
-            title={doc.title}
-          >
-            {doc.title}
-          </h3>
-
-          {doc.author && (
-            <p className="text-[11px] font-serif italic text-stone-600 mt-1 line-clamp-1">
-              a cura di {doc.author}
-            </p>
           )}
 
-          {/* Dati Documento Reali (senza stelle o recensioni inventate) */}
-          <div className="flex items-center gap-2 mt-2 text-stone-600 text-xs flex-wrap font-mono">
-            {doc.pages && (
-              <span className="text-[10px] font-bold">
-                {doc.pages} {doc.pages === 1 ? 'pagina' : 'pagine'}
+          {/* Metadati Libro */}
+          <div className="flex-1 min-w-0 pr-6">
+            <span className="text-[9px] font-mono font-black uppercase tracking-widest text-amber-800 block truncate">
+              {doc.category || 'DOCUMENTO'}
+            </span>
+            <h3
+              onClick={() => onOpenPreview(doc)}
+              className="font-serif font-black text-base leading-tight text-[#2b1b16] mt-0.5 hover:text-amber-900 transition-colors cursor-pointer line-clamp-2"
+              title={doc.title}
+            >
+              {doc.title}
+            </h3>
+            <p className="text-[11px] font-serif italic text-stone-600 mt-1 line-clamp-1">
+              {doc.author ? `di ${doc.author}` : (doc.date ? `del ${doc.date}` : 'Edizione Documentale')}
+            </p>
+
+            {/* Stelle Recensione */}
+            <div className="flex items-center gap-1 mt-2 text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span className="text-[10px] font-mono font-bold text-stone-600 ml-1">
+                5.0 ({doc.pages ? `${doc.pages} pag.` : ''}{doc.fileSize ? ` • ${doc.fileSize}` : ''})
               </span>
-            )}
-            {doc.fileSize && (
-              <span className="text-[10px] text-stone-500">
-                • {doc.fileSize}
-              </span>
-            )}
-            {doc.date && (
-              <span className="text-[10px] text-stone-500">
-                • {doc.date}
-              </span>
-            )}
+            </div>
           </div>
         </div>
 
-        {/* Barra Avanzamento di Lettura (mostrata solo se il documento ha più pagine) */}
-        {totalPages > 1 && (
-          <div className="p-3 rounded-xl bg-black/5 border border-black/10 mb-4">
-            <div className="flex items-center justify-between text-[11px] font-mono font-bold text-stone-800 mb-1.5">
-              <span>
-                AVANZAMENTO: <strong className="text-amber-900">{progressPercent}%</strong>
+        {/* Barra Avanzamento di Lettura & Pulsanti Pagina */}
+        <div className="p-3 rounded-xl bg-black/5 border border-black/10 mb-4">
+          <div className="flex items-center justify-between text-[11px] font-mono font-bold text-stone-800 mb-1.5">
+            <span>
+              STATO DI LETTURA: <strong className="text-amber-800">{progressPercent}%</strong>
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handlePrevPage}
+                className="w-5 h-5 rounded bg-stone-300 hover:bg-stone-400 text-stone-900 flex items-center justify-center text-xs font-bold cursor-pointer transition-colors"
+                title="Pagina precedente"
+              >
+                ‹
+              </button>
+              <span className="text-[11px] font-mono">
+                Pag. {currentPage} / {totalPages}
               </span>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handlePrevPage}
-                  title="Pagina precedente"
-                  className="w-5 h-5 rounded bg-stone-300 hover:bg-stone-400 text-stone-900 flex items-center justify-center text-xs font-bold cursor-pointer transition-colors"
-                >
-                  ‹
-                </button>
-                <span>
-                  Pag. {currentPage} / {totalPages}
-                </span>
-                <button
-                  type="button"
-                  onClick={handleNextPage}
-                  title="Pagina successiva"
-                  className="w-5 h-5 rounded bg-stone-300 hover:bg-stone-400 text-stone-900 flex items-center justify-center text-xs font-bold cursor-pointer transition-colors"
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-            <div className="w-full h-1.5 bg-[#D8C8A6] rounded-full overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-red-600 to-rose-700 transition-all duration-200"
-                style={{ width: `${progressPercent}%` }}
-              />
+              <button
+                type="button"
+                onClick={handleNextPage}
+                className="w-5 h-5 rounded bg-stone-300 hover:bg-stone-400 text-stone-900 flex items-center justify-center text-xs font-bold cursor-pointer transition-colors"
+                title="Pagina successiva"
+              >
+                ›
+              </button>
             </div>
           </div>
-        )}
+          <div className="w-full h-1.5 bg-[#d8c8a6] rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-red-600 to-rose-700 transition-all duration-200"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        </div>
 
-        {/* Sezione Contenuti Reali: Citazione, Capitoli o Descrizione (ZERO dati fantoccio) */}
-        <div className="border-t border-[#D8C8A8] pt-3">
-          {/* Se sono presenti SIA citazione/descrizione SIA capitoli, mostriamo i tab di scelta */}
-          {doc.chapters && doc.chapters.length > 0 && (doc.quote || doc.description) ? (
-            <div>
-              <div className="flex gap-2 mb-2">
-                <button
-                  type="button"
-                  onClick={() => setActiveTab('quote')}
-                  className={`px-2.5 py-1 rounded font-mono text-[10px] font-bold uppercase cursor-pointer transition-colors flex items-center gap-1 ${
-                    activeTab === 'quote'
-                      ? 'bg-[#2B1B16] text-amber-100'
-                      : 'bg-stone-200 text-stone-800 hover:bg-stone-300'
-                  }`}
-                >
-                  <Quote className="w-2.5 h-2.5" />
-                  {doc.quote ? 'CITAZIONE' : 'DESCRIZIONE'}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab('index')}
-                  className={`px-2.5 py-1 rounded font-mono text-[10px] font-bold uppercase cursor-pointer transition-colors ${
-                    activeTab === 'index'
-                      ? 'bg-[#2B1B16] text-amber-100'
-                      : 'bg-stone-200 text-stone-800 hover:bg-stone-300'
-                  }`}
-                >
-                  INDICE CAPITOLI ({doc.chapters.length})
-                </button>
-              </div>
+        {/* Tab di Consultazione: Citazione Guida & Indice Capitoli */}
+        <div className="border-t border-[#d8c8a8] pt-3">
+          <div className="flex gap-2 mb-2">
+            <button
+              type="button"
+              onClick={() => setActiveTab('quote')}
+              className={`px-2.5 py-1 rounded font-mono text-[10px] font-bold uppercase cursor-pointer transition-colors ${
+                activeTab === 'quote'
+                  ? 'bg-[#2b1b16] text-amber-100'
+                  : 'bg-stone-200 text-stone-800 hover:bg-stone-300'
+              }`}
+            >
+              CITAZIONE GUIDA
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('index')}
+              className={`px-2.5 py-1 rounded font-mono text-[10px] font-bold uppercase cursor-pointer transition-colors ${
+                activeTab === 'index'
+                  ? 'bg-[#2b1b16] text-amber-100'
+                  : 'bg-stone-200 text-stone-800 hover:bg-stone-300'
+              }`}
+            >
+              INDICE CAPITOLI
+            </button>
+          </div>
 
-              {activeTab === 'quote' && (
-                <div className="p-3.5 rounded-lg bg-amber-50/70 border border-amber-900/15 min-h-[90px] flex flex-col justify-between shadow-inner">
-                  <p className="text-xs font-serif italic text-stone-800 leading-relaxed">
-                    &ldquo;{displayQuote}&rdquo;
-                  </p>
-                </div>
-              )}
-
-              {activeTab === 'index' && (
-                <div className="space-y-1 text-xs font-mono min-h-[90px] p-2.5 rounded-lg bg-white/50 border border-stone-300">
-                  {doc.chapters.map((ch, idx) => (
-                    <div
-                      key={idx}
-                      className="flex justify-between items-center py-0.5 border-b border-stone-200 last:border-b-0 text-[11px]"
-                    >
-                      <span className="font-bold text-stone-800 truncate pr-2">{ch.title}</span>
-                      <span className="text-stone-500 shrink-0 font-semibold">{ch.pages}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ) : doc.chapters && doc.chapters.length > 0 ? (
-            /* Solo capitoli presenti */
-            <div className="space-y-1 text-xs font-mono p-2.5 rounded-lg bg-white/50 border border-stone-300">
-              <span className="text-[9px] font-bold uppercase text-stone-500 block mb-1">
-                Indice capitoli:
-              </span>
-              {doc.chapters.map((ch, idx) => (
-                <div
-                  key={idx}
-                  className="flex justify-between items-center py-0.5 border-b border-stone-200 last:border-b-0 text-[11px]"
-                >
-                  <span className="font-bold text-stone-800 truncate pr-2">{ch.title}</span>
-                  <span className="text-stone-500 shrink-0 font-semibold">{ch.pages}</span>
-                </div>
-              ))}
-            </div>
-          ) : (doc.quote || doc.description) ? (
-            /* Solo citazione o descrizione presente */
-            <div className="p-3.5 rounded-lg bg-amber-50/70 border border-amber-900/15 flex flex-col justify-between shadow-inner">
+          {/* Contenuto Tab Citazione */}
+          {activeTab === 'quote' && (
+            <div className="p-3 rounded-lg bg-amber-50/60 border border-amber-900/10 min-h-[85px] flex flex-col justify-between">
               <p className="text-xs font-serif italic text-stone-800 leading-relaxed">
                 &ldquo;{displayQuote}&rdquo;
               </p>
+              <span className="text-[9px] font-mono text-stone-500 font-bold block mt-1.5">
+                — Capitolo estratto, Pagina {currentPage}
+              </span>
             </div>
-          ) : null}
+          )}
+
+          {/* Contenuto Tab Indice */}
+          {activeTab === 'index' && (
+            <div className="space-y-1 text-xs font-mono min-h-[85px] p-2.5 rounded-lg bg-white/50 border border-stone-300">
+              {doc.chapters && doc.chapters.length > 0 ? (
+                doc.chapters.map((ch, idx) => (
+                  <div
+                    key={idx}
+                    className="flex justify-between py-1 border-b border-stone-200 last:border-b-0 text-[11px]"
+                  >
+                    <span className="font-bold text-stone-800 truncate pr-2">{ch.title}</span>
+                    <span className="text-stone-500 shrink-0 font-semibold">{ch.pages}</span>
+                  </div>
+                ))
+              ) : (
+                <div className="text-[11px] text-stone-500 italic py-2 text-center">
+                  Nessun capitolo specificato nel file documents.json.
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Pulsanti di Azione: Consulta & Scarica PDF Nativo */}
-      <div className="mt-5 pt-3.5 border-t border-[#D8C8A8] grid grid-cols-2 gap-2.5">
+      {/* Pulsanti di Azione: Consulta & Scarica PDF */}
+      <div className="mt-4 pt-3 border-t border-[#d8c8a8] grid grid-cols-2 gap-2.5">
         <button
           type="button"
           onClick={() => onOpenPreview(doc)}
@@ -349,13 +283,13 @@ function EditorialBookCard({
           href={doc.fileUrl}
           download={doc.filename}
           className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-red-700 to-rose-800 hover:from-red-600 hover:to-rose-700 text-white text-xs font-mono font-bold shadow-md shadow-red-950/30 transition-all text-center cursor-pointer"
-          title={`Download nativo Chrome di "${doc.filename}"`}
+          title={`Scarica "${doc.filename}"`}
         >
           <ArrowDownToLine className="w-3.5 h-3.5" />
           <span>Scarica PDF</span>
         </a>
       </div>
-    </article>
+    </div>
   );
 }
 
