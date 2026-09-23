@@ -544,7 +544,7 @@ export default function App() {
 
               {/* Accessibility Controls */}
               <div
-                className="flex items-center gap-1 bg-[#120F0D] border border-[#3A2F27] p-1 rounded-xl shrink-0"
+                className="flex items-center gap-1.5 bg-[#120F0D] border border-[#3A2F27] p-1 rounded-xl shrink-0"
                 role="toolbar"
                 aria-label="Strumenti di Accessibilità"
               >
@@ -552,39 +552,54 @@ export default function App() {
                   type="button"
                   onClick={() => setHighContrast(!highContrast)}
                   aria-pressed={highContrast}
-                  title="Alto contrasto"
-                  className={`p-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                    highContrast ? 'bg-white text-black' : 'text-stone-300 hover:bg-[#28211C]'
+                  title={highContrast ? 'Disattiva alto contrasto' : 'Attiva modalità alto contrasto'}
+                  className={`px-2 py-1 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1 cursor-pointer ${
+                    highContrast
+                      ? 'bg-amber-400 text-stone-950 font-black shadow-sm ring-1 ring-amber-300'
+                      : 'text-stone-300 hover:bg-[#28211C]'
                   }`}
                 >
                   <Contrast className="w-3.5 h-3.5" />
-                  <span className="sr-only">Alto contrasto</span>
+                  <span className="hidden sm:inline text-[11px] font-mono">
+                    {highContrast ? 'Contrasto ON' : 'Contrasto'}
+                  </span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setDyslexicFont(!dyslexicFont)}
                   aria-pressed={dyslexicFont}
-                  title="Carattere ad alta leggibilità"
-                  className={`px-2 py-1 rounded-lg text-xs font-semibold transition-colors ${
-                    dyslexicFont ? 'bg-amber-600 text-stone-950 font-bold' : 'text-stone-300 hover:bg-[#28211C]'
+                  title={dyslexicFont ? 'Disattiva carattere per dislessia' : 'Attiva carattere ad alta leggibilità'}
+                  className={`px-2 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                    dyslexicFont
+                      ? 'bg-amber-500 text-stone-950 font-black shadow-sm ring-1 ring-amber-300'
+                      : 'text-stone-300 hover:bg-[#28211C]'
                   }`}
                 >
-                  Leggibile
+                  <span className="text-[11px] font-mono font-bold">
+                    {dyslexicFont ? 'Leggibile ON' : 'Leggibile'}
+                  </span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setTextSize(textSize === 'normal' ? 'lg' : textSize === 'lg' ? 'xl' : 'normal')}
-                  title="Dimensione caratteri"
-                  className="p-1.5 rounded-lg text-xs font-bold text-stone-300 hover:bg-[#28211C] flex items-center"
+                  title="Modifica dimensione caratteri (1x, 1.2x, 1.4x)"
+                  className={`px-2 py-1 rounded-lg text-xs font-bold transition-colors flex items-center gap-1 cursor-pointer ${
+                    textSize !== 'normal'
+                      ? 'bg-amber-500 text-stone-950 font-black shadow-sm ring-1 ring-amber-300'
+                      : 'text-stone-300 hover:bg-[#28211C]'
+                  }`}
                 >
-                  <Type className="w-3.5 h-3.5 mr-0.5" />
-                  {textSize === 'normal' ? '1x' : textSize === 'lg' ? '1.2x' : '1.4x'}
+                  <Type className="w-3.5 h-3.5" />
+                  <span className="text-[11px] font-mono">
+                    {textSize === 'normal' ? 'Testo 1x' : textSize === 'lg' ? 'Testo 1.2x' : 'Testo 1.4x'}
+                  </span>
                 </button>
               </div>
             </div>
           </div>
+
 
           {/* Category Tabs (Derived 100% dynamically from documents.json) */}
           <div className="mt-3.5 pt-3 border-t border-[#2C241E] flex items-center gap-2 overflow-x-auto scrollbar-none">
