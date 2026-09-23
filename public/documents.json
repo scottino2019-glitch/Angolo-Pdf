@@ -13,9 +13,10 @@
     "pages": 6,
     "date": "2026-03-15",
      "chapters": [
-      { "title": "1. L'avverbio 刚 (Gāng) - Appena", "pages": "pp. 4" },
-      { "title": "2. I termini di parentela:", "pages": "pp. 5" },
-      { "title": "3. Curiosità", "pages": "pp. 6" }
+      {"title": "1. Racconto", "pages": "pp. 1-2" },
+      { "title": "2. Vocabolario", "pages": "pp. 3" },
+      { "title": "3. Grammatica", "pages": "pp. 4-5" },
+      { "title": "4. Curiosità", "pages": "pp. 6" }
     ],
     "tags": ["Lezioni", "Grammatica", "Vocaboli", "Lettura"],
     "badge": "In Evidenza",
