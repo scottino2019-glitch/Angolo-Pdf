@@ -374,27 +374,38 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activePreviewDoc]);
 
-  // Accessibility classes
+ // Accessibility classes
   useEffect(() => {
     if (highContrast) {
+      document.documentElement.classList.add('high-contrast');
       document.body.classList.add('high-contrast');
     } else {
+      document.documentElement.classList.remove('high-contrast');
       document.body.classList.remove('high-contrast');
     }
   }, [highContrast]);
 
   useEffect(() => {
     if (dyslexicFont) {
+      document.documentElement.classList.add('font-dyslexic');
       document.body.classList.add('font-dyslexic');
     } else {
+      document.documentElement.classList.remove('font-dyslexic');
       document.body.classList.remove('font-dyslexic');
     }
   }, [dyslexicFont]);
 
   useEffect(() => {
+    document.documentElement.classList.remove('text-size-lg', 'text-size-xl');
     document.body.classList.remove('text-size-lg', 'text-size-xl');
-    if (textSize === 'lg') document.body.classList.add('text-size-lg');
-    if (textSize === 'xl') document.body.classList.add('text-size-xl');
+    if (textSize === 'lg') {
+      document.documentElement.classList.add('text-size-lg');
+      document.body.classList.add('text-size-lg');
+    }
+    if (textSize === 'xl') {
+      document.documentElement.classList.add('text-size-xl');
+      document.body.classList.add('text-size-xl');
+    }
   }, [textSize]);
 
   // Extract Categories dynamically from loaded documents
@@ -464,7 +475,6 @@ export default function App() {
           <span>Modalità non in linea: i volumi PDF in cache rimangono liberamente consultabili.</span>
         </div>
       )}
-
       {/* Header & Masthead da Biblioteca Storica */}
       <header className="border-b border-[#2C241E] bg-[#1F1915]/95 backdrop-blur sticky top-0 z-40 shadow-xl">
         {/* Ribbon data e metadati */}
