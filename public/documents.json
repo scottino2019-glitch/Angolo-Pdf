@@ -21,5 +21,28 @@
     "tags": ["Lezioni", "Grammatica", "Vocaboli", "Lettura"],
     "badge": "In Evidenza",
     "accent": "emerald"
+  },
+    {
+    "id": "doc-02",
+    "title": "Il mio weekend",
+    "category": "Lezioni",
+    "author": "",
+    "description": "Racconto con grammatica e vocaboli",
+    "quote": "上个周末天气非常好,阳光明媚...",
+    "filename": "il-fine-settimana.pdf",
+    "fileUrl": "/documents/il-fine-settimana.pdf",
+    "coverImage": "/covers/settimana.jpeg",
+    "fileSize": "1.2 MB",
+    "pages": 6,
+    "date": "2026-03-15",
+     "chapters": [
+      {"title": "1. Racconto", "pages": "pp. 1-2" },
+      { "title": "2. Vocabolario", "pages": "pp. 3" },
+      { "title": "3. Grammatica", "pages": "pp. 4-5" },
+      { "title": "4. Curiosità", "pages": "pp. 6" }
+    ],
+    "tags": ["Lezioni", "Grammatica", "Vocaboli", "Lettura"],
+    "badge": "In Evidenza",
+    "accent": "emerald"
   }
 ]
